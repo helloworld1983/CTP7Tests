@@ -1,0 +1,5 @@
+<lcgdict>
+<class name="LinkMonitor"/>
+<class name="std::vector<LinkMonitor>"/>
+<class name="edm::Wrapper<std::vector<LinkMonitor> >"/>
+</lcgdict>
