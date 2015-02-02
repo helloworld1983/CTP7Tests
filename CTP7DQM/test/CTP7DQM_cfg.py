@@ -27,6 +27,9 @@ process.MessageLogger = cms.Service("MessageLogger",
     )
 )
 
+process.load("CTP7Tests.CTP7DQM.linkFilter_cfi")
+
+filter_step = process.filterLinks
 
 process.dqmSaver.workflow = cms.untracked.string('/L1TMonitor/Calo/CTP7')
 
@@ -51,7 +54,7 @@ process.ctp7link = cms.EDAnalyzer("LinkDQM",
 #This creates DQM-compatible plots
 #process.p = cms.Path(process.l1tctp7+process.dqmSaver)
 #process.p = cms.Path(process.ctp7link+process.dqmSaver)
-process.p = cms.Path(process.l1tctp7+process.ctp7link+process.dqmSaver)
+process.p = cms.Path(process.ctp7link+filter_step+process.l1tctp7+process.dqmSaver)
 
 
 # For faster debugging & extra couts we can also work with a standard analyzer
