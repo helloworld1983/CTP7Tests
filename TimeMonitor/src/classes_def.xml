@@ -1,0 +1,5 @@
+<lcgdict>
+<class name="TimeMonitor"/>
+<class name="std::vector<TimeMonitor>"/>
+<class name="edm::Wrapper<std::vector<TimeMonitor> >"/>
+</lcgdict>
