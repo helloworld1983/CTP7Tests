@@ -29,6 +29,7 @@
 
 //Include LinkDQM class
 #include "CTP7Tests/LinkMonitor/interface/LinkMonitor.h"
+#include "CTP7Tests/TimeMonitor/interface/TimeMonitor.h"
 //
 // class declaration
 //
@@ -65,6 +66,7 @@ private:
   MonitorElement* ctp7LinkMonitorNot15_;
   MonitorElement* ctp7LinkMonitor2D_;
   MonitorElement* ctp7LinkMonitorNot15_2D_;
+  MonitorElement* ctp7LinkMonitorVsTime_;
 
   int nev_; // Number of events processed
   std::string outputFile_; //file name for ROOT ouput
@@ -73,6 +75,7 @@ private:
   std::ofstream logFile_;
   
   edm::EDGetTokenT<LinkMonitorCollection> ctp7Source_LMCollection_;
+  edm::EDGetTokenT<TimeMonitorCollection> ctp7Source_TCollection_;
 
 };
 
