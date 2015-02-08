@@ -1,13 +1,13 @@
 #include "drawGridRct.C"
-
 TFile * file0 ;
 
-void fastplotter(TString fileName="CTP7DQM.root"){
+void fastplotterMC(TString fileName="CTP7DQMMC.root"){
 
  gROOT->LoadMacro("tdrstyle.C");
  setTDRStyle();
 
    gStyle->SetPalette(55);
+  
 
  file0 = new TFile(fileName,"READONLY");
 
@@ -37,6 +37,7 @@ void doHisto(TString name="RctBitHfPlusTauEtaPhi", TString label="Test", bool do
           histo->SetXTitle("#eta");
           histo->SetYTitle("#phi");
           histo->SetTitle(label);
+
           drawGridRct();
 
  }
@@ -80,5 +81,4 @@ void doProfile(TString name="RctRegionsPumEta10",TString label="Test"){
  prof->Draw();
  C1->SaveAs(name+"Avg"+".png");
 }
-
 

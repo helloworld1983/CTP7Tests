@@ -115,6 +115,10 @@ void L1TCTP7::beginRun(edm::Run const& iRun, edm::EventSetup const& iSetup)
 	dbe->book2D("RctRegionsAvgEtVsEvt", " AVERAGE REGION RANK vs EVT", EVBINS, EVMIN,
                     EVMAX, R10BINS, R10MIN, R10MAX);
 
+    ctp7RegionsMaxEtVsEvt_ =
+        dbe->book2D("RctRegionsMaxEtVsEvt", " MAX REGION RANK vs EVT", EVBINS, EVMIN,
+                    EVMAX, R10BINS, R10MIN, R10MAX);
+
     ctp7RegionsAverageRegionEt_ =
 	dbe->book1D("RctRegionsAverageRegionEt", "AVERAGE REGION RANK", R10BINS, R10MIN, R10MAX);
 
@@ -346,6 +350,8 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
     // Fill the RCT histograms
     int nonzeroregions = 0;
     int totalregionet = 0;
+    int maxregionet = 0;
+
     // Regions
     for (L1CaloRegionCollection::const_iterator ireg = rgn->begin();
 	 ireg != rgn->end(); ireg++) {
@@ -353,6 +359,8 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
       {
       nonzeroregions++;
       totalregionet += ireg->et();
+      if(ireg->et()>maxregionet) maxregionet=ireg->et();        
+
       ctp7RegionRank_->Fill(ireg->et());
       if(ireg->et()>5){
 	ctp7RegionsOccEtaPhi_->Fill(ireg->gctEta(), ireg->gctPhi());
@@ -381,6 +389,8 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
     //
     ctp7RegionsAverageRegionEt_->Fill(totalregionet/NUMREGIONS);
     ctp7RegionsAvgEtVsEvt_->Fill(nev_,totalregionet/NUMREGIONS);
+    ctp7RegionsMaxEtVsEvt_->Fill(nev_,maxregionet);
+
     ctp7RegionsNonZero_->Fill(nonzeroregions/PUMBINS);
     ctp7RegionsNonZeroVsEvt_->Fill(nev_,nonzeroregions/PUMBINS);
     //second region loop necessary because pum found in prior loop  
