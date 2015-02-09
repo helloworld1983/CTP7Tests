@@ -12,8 +12,9 @@ until [  $COUNTER -gt 1 ]; do
     root -b -q linkplotter.C >& linkplots.log 
     
     # Format for web
-   
-    foldername=$COUNTER$(date +_%Y%m%d_%H%M%S)
+    foldername="MonitorPatternsTestGT"_$COUNTER$(date +_%Y%m%d_%H%M%S)
+    echo Creating $foldername
+
     mkdir -p "$foldername" 
     mv *png  "$foldername"
     mv *log "$foldername"
@@ -31,5 +32,7 @@ until [  $COUNTER -gt 1 ]; do
     mv "$foldername"  ~/www/CTP7DQMTESTS/
  
     let COUNTER+=1
+
+   # sleep 5m
 done
     

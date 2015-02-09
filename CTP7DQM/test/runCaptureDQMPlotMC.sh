@@ -6,6 +6,7 @@ foldername=$(date +%Y%m%d_%H%M%S)
 mkdir -p "mc_$foldername" 
 mv *png *log "mc_$foldername"
 cp indexMC.html "mc_$foldername"/index.html
+cp dqmDetails.html "mc_$foldername"/
 
 mv CTP7DQMMC.root  "mc_$foldername"
 rm DQM_V0001_R000000001__L1TMonitor__Calo__CTP7.root

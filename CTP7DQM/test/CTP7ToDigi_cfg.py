@@ -4,7 +4,7 @@ process = cms.Process("CTP7ToDigiTester")
 
 process.load("FWCore.MessageService.MessageLogger_cfi")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(64) )
 
 process.source = cms.Source("EmptySource")
 

@@ -10,7 +10,10 @@ process.maxEvents = cms.untracked.PSet(
 
 process.source = cms.Source("PoolSource",
                             fileNames = cms.untracked.vstring(
-    'file:../../CreateRCTPatternsMC/rct.root'
+#   "file:/afs/hep.wisc.edu/cms/mcepeda/UCTANALYSISEMULATOR/DQM/CMSSW_7_3_0_pre1/src/CTP7Tests/CreateRCTPatternsMC/test/rct64TTBarEventsFilter17.root"
+#  "file:/afs/hep.wisc.edu/cms/mcepeda/UCTANALYSISEMULATOR/DQM/CMSSW_7_3_0_pre1/src/CTP7Tests/CreateRCTPatternsMC/test/PatternsForIsobel/rct64PionGunEventsFilter_test.root"
+ "file:/afs/hep.wisc.edu/cms/mcepeda/UCTANALYSISEMULATOR/DQM/CMSSW_7_3_0_pre1/src/CTP7Tests/CreateRCTPatternsMC/test/PatternsForIsobel/rct64GGH2TauEventsFilter.root"
+#    'file:../../CreateRCTPatternsMC/rct.root'
     #'file:keep/ttbar64.root' 
     #'file:keep/stangepatterncard6.root' 
 )
@@ -33,6 +36,7 @@ process.l1tctp7 = cms.EDAnalyzer("L1TCTP7",
     DQMStore = cms.untracked.bool(True),
     disableROOToutput = cms.untracked.bool(False),
     outputFile = cms.untracked.string('./CTP7DQMMC.root'),
+#    ctp7Source = cms.InputTag("filteredSimRctDigis"),
     ctp7Source = cms.InputTag("simRctDigis"),
     verbose = cms.untracked.bool(False),
     filterTriggerType  = cms.int32(-1)

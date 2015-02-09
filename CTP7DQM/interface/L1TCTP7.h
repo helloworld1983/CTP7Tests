@@ -80,6 +80,7 @@ private:
   MonitorElement* ctp7RegionsNonZero_;
   MonitorElement* ctp7RegionsNonZeroVsEvt_;
   MonitorElement* ctp7RegionsAvgEtVsEvt_;
+  MonitorElement* ctp7RegionsMaxEtVsEvt_;
   MonitorElement* ctp7RegionsAverageRegionEt_;
   MonitorElement* ctp7RegionsAvgEtVsEta_;
   MonitorElement* ctp7RegionsPumEta0_;
