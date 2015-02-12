@@ -23,20 +23,21 @@ void linkplotter(TString fileName="CTP7DQM_link.root"){
 //
  file0 = new TFile(fileName,"READONLY");
  
- doHisto("RctLinkMonitor","Rct Link Monitor","CTP7 Link Status", false);;
- doHisto("RctLinkMonitorVsTime","Rct Link Monitor vs Time","Madison Time hhmmss",true, false);;
- doHisto("RctLinkMonitorNot15","Rct Link Monitor Not 0xF","Link Status =/= 0xf", false);;
- doHisto("RctLinkMonitor2D","Link Number Vs 1=!0xf","CTP7 Link Number", true,true);;
- doHisto("RctLinkMonitorNot15_2D","Rct Link Monitor Not 0xF per Link","CTP7 Link Number", true);;
+ doHisto("RctLinkMonitor","CTP7 Link Status","CTP7 Link Status", false);;
+ doHisto("RctLinkMonitorVsTime","CTP7 Link Health vs Time","Madison Time hhmmss",true, false);;
+ doHisto("RctLinkMonitorNot15","CTP7 Link Status Error","CTP7 Link Error Status ", false);;
+ doHisto("RctLinkMonitor2D","CTP7 Link Health Per Link","CTP7 Link Number", true,true);;
+ doHisto("RctLinkMonitorNot15_2D","CTP7 Link Error Status per Link","CTP7 Link Number", true,false,true);;
 }
 
-void doHisto(TString name="RctBitHfPlusTauEtaPhi", TString label="Test", TString xaxis="X Axis",  bool do2D=true, bool do01=false){
+void doHisto(TString name="RctBitHfPlusTauEtaPhi", TString label="Test", TString xaxis="X Axis",  bool do2D=true, bool do01=false, bool Ystatus=false){
  TCanvas* C1= new TCanvas("T"+name);
  TH1F *histo=(TH1F*)file0->Get("DQMData/L1T/LinkDQM/"+name);
  if(do2D) {
           histo->Draw("colz,text");
           histo->SetXTitle(xaxis);
-          if (do01){histo->SetYTitle("No Error                   Error");}
+          if (do01){histo->SetYTitle("No Error                                  Error");}
+          else if (Ystatus){histo->SetYTitle("CTP7 Link Status");}
           else{histo->SetYTitle("CTP7 Link Number");}
           histo->SetTitle(label);
  }
