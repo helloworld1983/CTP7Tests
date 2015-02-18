@@ -13,7 +13,7 @@ set_plot_style()
     gStyle->SetNumberContours(NCont);
 }
  
-void linkplotter(TString fileName="CTP7DQM_link.root"){
+void linkplotter(TString fileName="CTP7DQMMERGE.root"){
 
  gROOT->LoadMacro("tdrstyle.C");
  setTDRStyle();
@@ -24,7 +24,7 @@ void linkplotter(TString fileName="CTP7DQM_link.root"){
  file0 = new TFile(fileName,"READONLY");
  
  doHisto("RctLinkMonitor","CTP7 Link Status","CTP7 Link Status", false);;
- doHisto("RctLinkMonitorVsTime","CTP7 Link Health vs Time","Madison Time hhmmss",true, false);;
+ doHisto("RctLinkMonitorVsTime","CTP7 Link Health vs Time","CERN Time hhmmss",true, false);;
  doHisto("RctLinkMonitorNot15","CTP7 Link Status Error","CTP7 Link Error Status ", false);;
  doHisto("RctLinkMonitor2D","CTP7 Link Health Per Link","CTP7 Link Number", true,true);;
  doHisto("RctLinkMonitorNot15_2D","CTP7 Link Error Status per Link","CTP7 Link Number", true,false,true);;
