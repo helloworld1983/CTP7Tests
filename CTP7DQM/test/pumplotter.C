@@ -1,7 +1,7 @@
 TFile * file0 ;
 ofstream myfile;
  
-void pumplotter(TString fileName="CTP7DQM.root"){
+void pumplotter(TString fileName="CTP7DQMMERGE.root"){
 
  gROOT->LoadMacro("tdrstyle.C");
  setTDRStyle();
@@ -13,7 +13,9 @@ void pumplotter(TString fileName="CTP7DQM.root"){
  doHistoEvt("RctRegionsNonZeroVsEvt","Non Zero Regions/22 Vs Event","PUM bin",true);;
  doHistoEvt("RctRegionsAvgEtVsEvt","Average Region Rank Vs Event","Average region rank", true);;
  doHistoEvt("RctRegionsAvgEtVsEta","Average Region Rank Vs gctEta","Average region rank", false);;
+ doHistoEvt("RctRegionsMaxEtVsEvt","Max Region Rank Vs Event","Average region rank", true);;
  doHisto("RctRegionsAverageRegionEt","Average Region Rank",false);;
+ doHistoEvt("RctRegionsMaxEtVsEvt","Max Region Rank Vs Event","Average region rank", true,40);;
  doHisto("RctRegionsNonZero","Non Zero Regions/22",false,false);;
  doHisto("RctRegionsPumEta0","E_{T} per PUM bin in gcteta=0",false,true);;
  doHisto("RctRegionsPumEta1","E_{T} per PUM bin in gcteta=1",false,true);;
@@ -40,7 +42,7 @@ void pumplotter(TString fileName="CTP7DQM.root"){
  myfile.close();
 }
 
-void doHisto(TString name="RctBitHfPlusTauEtaPhi", TString label="Test", bool do2D=true, bool doPUM=false){
+void doHisto(TString name="RctBitHfPlusTauEtaPhi", TString label="Test", bool do2D=true, bool doPUM=false, int zoom=-1){
  TCanvas* C1= new TCanvas("T"+name);
  TH1F *histo=(TH1F*)file0->Get("DQMData/L1T/L1TCTP7/"+name);
  if(do2D) {
@@ -62,6 +64,9 @@ void doHisto(TString name="RctBitHfPlusTauEtaPhi", TString label="Test", bool do
           histo->SetYTitle("Events");
           histo->SetLineWidth(2);
           histo->SetTitle(label);
+          if(zoom!=-1) {histo->GetXaxis()->SetUserRange(0,zoom); histo->SetName(name+"_zoom");}
+              
+
  }
  C1->SaveAs(name+".png");
 if (doPUM) doProfile(name,"Avg "+label);
@@ -84,7 +89,7 @@ void doProfile(TString name="RctRegionsPumEta10",TString label="Test"){
  C1->SaveAs(name+"Avg"+".png");
 }
 
-void doHistoEvt(TString name="RctBitHfPlusTauEtaPhi", TString label="Test", TString yaxis="YAxis",bool doEvt){
+void doHistoEvt(TString name="RctBitHfPlusTauEtaPhi", TString label="Test", TString yaxis="YAxis",bool doEvt, int zoom=-1){
  TCanvas* C1= new TCanvas("T"+name);
  TH2F *histo=(TH2F*)file0->Get("DQMData/L1T/L1TCTP7/"+name);
  histo->Draw("colz,text");
@@ -92,9 +97,10 @@ if (doEvt) histo->SetXTitle("EVENT");
 else histo->SetXTitle("gctEta");
  histo->SetYTitle(yaxis);
  histo->SetTitle(label);
+          if(zoom!=-1) {histo->GetXaxis()->SetRangeUser(0,zoom);  name=name+"_zoom";}
  TProfile *prof=histo->ProfileX();
  prof ->Draw();
-if (doEvt) prof->Rebin(10.);
+//if (doEvt) prof->Rebin(10.);
  C1->SaveAs(name+".png");
 }
 
