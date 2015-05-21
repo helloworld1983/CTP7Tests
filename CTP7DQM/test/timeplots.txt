@@ -1,0 +1,51 @@
+  *******************************************
+  *                                         *
+  *        W E L C O M E  to  R O O T       *
+  *                                         *
+  *   Version   5.34/18     14 March 2014   *
+  *                                         *
+  *  You are welcome to visit our Web site  *
+  *          http://root.cern.ch            *
+  *                                         *
+  *******************************************
+
+ROOT 5.34/18 (heads/v5-34-00-patches@v5-34-17-156-g60f5d99, Oct 15 2014, 10:43:00 on linuxx8664gcc)
+
+CINT/ROOT C/C++ Interpreter version 5.18.00, July 2, 2010
+Type ? for help. Commands must be C++ statements.
+Enclose multiple statements between { }.
+
+Processing timingplotter.C...
+Info in <TCanvas::Print>: png file RctRegionsEtMapVsEvt.png has been created
+Info in <TCanvas::Print>: png file RctRegionsOccVsEvt.png has been created
+Info in <TCanvas::Print>: png file RctRegionsTotEtVsEvt.png has been created
+Info in <TCanvas::Print>: png file RctRegionsNonZeroVsEvt.png has been created
+Info in <TCanvas::SaveAs>: ROOT file RctRegionsNonZeroVsEvt.root has been created
+Info in <TCanvas::Print>: png file RctRegionsAvgEtVsEvt.png has been created
+Info in <TCanvas::SaveAs>: ROOT file RctRegionsAvgEtVsEvt.root has been created
+Info in <TCanvas::Print>: png file RctRegionsAvgEtVsEta.png has been created
+Info in <TCanvas::Print>: png file RctRegionsMaxEtVsEvt.png has been created
+Info in <TCanvas::SaveAs>: ROOT file RctRegionsMaxEtVsEvt.root has been created
+Info in <TCanvas::Print>: png file RctRegionsAverageRegionEt.png has been created
+Info in <TCanvas::Print>: png file RctRegionsTotalRegionEt.png has been created
+Warning in <TCanvas::Constructor>: Deleting canvas with same name: TRctRegionsMaxEtVsEvt
+Info in <TCanvas::Print>: png file RctRegionsMaxEtVsEvt_zoom.png has been created
+Warning in <TCanvas::Constructor>: Deleting canvas with same name: TRctRegionsAvgEtVsEvt
+Info in <TCanvas::Print>: png file RctRegionsAvgEtVsEvt_zoom.png has been created
+Warning in <TCanvas::Constructor>: Deleting canvas with same name: TRctRegionsTotEtVsEvt
+Info in <TCanvas::Print>: png file RctRegionsTotEtVsEvt_zoom.png has been created
+Info in <TCanvas::Print>: png file RctRegionsNormNonZero.png has been created
+Info in <TCanvas::Print>: png file RctRegionsNormNonZeroVsEvt.png has been created
+Info in <TCanvas::Print>: png file RctRegionsNonZero.png has been created
+Info in <TCanvas::Print>: png file RctEmIsoNonZeroVsEvt.png has been created
+Info in <TCanvas::Print>: png file RctEmIsoAvgEtVsEta.png has been created
+Info in <TCanvas::Print>: png file RctEmIsoTotEtVsEvt.png has been created
+Warning in <TCanvas::Constructor>: Deleting canvas with same name: TRctEmIsoTotEtVsEvt
+Info in <TCanvas::Print>: png file RctEmIsoTotEtVsEvt_zoom.png has been created
+Info in <TCanvas::Print>: png file RctEmIsoMaxEtVsEvt.png has been created
+Warning in <TCanvas::Constructor>: Deleting canvas with same name: TRctEmIsoMaxEtVsEvt
+Info in <TCanvas::Print>: png file RctEmIsoMaxEtVsEvt_zoom.png has been created
+Info in <TCanvas::Print>: png file RctEmIsoAvgEtVsEvt.png has been created
+Warning in <TCanvas::Constructor>: Deleting canvas with same name: TRctEmIsoAvgEtVsEvt
+Info in <TCanvas::Print>: png file RctEmIsoAvgEtVsEvt_zoom.png has been created
+Info in <TCanvas::Print>: png file RctEmBx.png has been created
