@@ -3,6 +3,8 @@ from FWCore.ParameterSet.VarParsing import VarParsing
 
 options = VarParsing('analysis')
 
+options.parseArguments()
+
 process = cms.Process("myDQM")
 process.load("DQMServices.Core.DQM_cfg")
 process.load("DQMServices.Components.DQMEnvironment_cfi")
@@ -23,6 +25,7 @@ if options.maxEvents:
     nEvents = options.maxEvents
 else:
     nEvents = 10000
+
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(nEvents) )
 
 process.source = cms.Source("EmptySource")

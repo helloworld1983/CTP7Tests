@@ -109,6 +109,14 @@ void L1TCTP7::beginRun(edm::Run const& iRun, edm::EventSetup const& iSetup)
     ctp7RegionsNonZeroVsEvt_ =
 	dbe->book2D("RctRegionsNonZeroVsEvt", "REGION PUM vs EVT", EVBINS, EVMIN,
                     EVMAX, NUMREGIONS,-0.5,NUMREGIONS-0.5);
+   ctp7RegionsNonZeroBarrelVsEvt_ =
+	dbe->book2D("RctRegionsNonZeroBarrelVsEvt", "REGION PUM vs EVT", EVBINS, EVMIN,
+                    EVMAX, NUMREGIONS,-0.5,NUMREGIONS-0.5);
+   ctp7RegionsNonZeroHFVsEvt_ =
+	dbe->book2D("RctRegionsNonZeroHFVsEvt", "REGION PUM vs EVT", EVBINS, EVMIN,
+                    EVMAX, NUMREGIONS,-0.5,NUMREGIONS-0.5);
+
+
 
     ctp7RegionsNormNonZeroVsEvt_ =
         dbe->book2D("RctRegionsNormNonZeroVsEvt", "REGION PUM vs EVT", EVBINS, EVMIN,
@@ -391,6 +399,8 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
   if ( doHd ) {
     // Fill the RCT histograms
     double nonzeroregions = 0; // this is divided later
+    double nonzeroregions_barrel = 0; // this is divided later
+    double nonzeroregions_hf = 0; // this is divided later
     double totalregionet = 0;
     unsigned int maxregionet = 0;
 
@@ -408,7 +418,13 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
 
       nonzeroregions++;
       totalregionet += ireg->et();
-      //if(ireg->et()>maxregionet &&ireg->gctEta()<10) maxregionet=ireg->et();        
+      if(ireg->gctEta()==10||ireg->gctEta()==11){
+        nonzeroregions_barrel++;        
+      }
+      if(ireg->gctEta()<4||ireg->gctEta()>17){
+        nonzeroregions_hf++;
+      }
+
       if(ireg->et()>maxregionet) maxregionet=ireg->et();        
 
       ctp7RegionRank_->Fill(ireg->et());
@@ -441,6 +457,8 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
 
     ctp7RegionsNonZero_->Fill(nonzeroregions);
     ctp7RegionsNonZeroVsEvt_->Fill(nev_,nonzeroregions);
+    ctp7RegionsNonZeroBarrelVsEvt_->Fill(nev_,nonzeroregions_barrel);
+    ctp7RegionsNonZeroHFVsEvt_->Fill(nev_,nonzeroregions_hf);
 
     // Can we move this to a independent function, and/or clean up the loop (Maria)
     //second region loop necessary because pum found in prior loop  

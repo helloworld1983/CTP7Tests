@@ -21,6 +21,10 @@ Info in <TCanvas::Print>: png file RctRegionsOccVsEvt.png has been created
 Info in <TCanvas::Print>: png file RctRegionsTotEtVsEvt.png has been created
 Info in <TCanvas::Print>: png file RctRegionsNonZeroVsEvt.png has been created
 Info in <TCanvas::SaveAs>: ROOT file RctRegionsNonZeroVsEvt.root has been created
+Info in <TCanvas::Print>: png file RctRegionsNonZeroBarrelVsEvt.png has been created
+Info in <TCanvas::SaveAs>: ROOT file RctRegionsNonZeroBarrelVsEvt.root has been created
+Info in <TCanvas::Print>: png file RctRegionsNonZeroHFVsEvt.png has been created
+Info in <TCanvas::SaveAs>: ROOT file RctRegionsNonZeroHFVsEvt.root has been created
 Info in <TCanvas::Print>: png file RctRegionsAvgEtVsEvt.png has been created
 Info in <TCanvas::SaveAs>: ROOT file RctRegionsAvgEtVsEvt.root has been created
 Info in <TCanvas::Print>: png file RctRegionsAvgEtVsEta.png has been created

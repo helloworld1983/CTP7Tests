@@ -29,8 +29,10 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
    echo COUNTER $COUNTER
 
    # Run CMSSW Programs
-   cmsRun CTP7ToDigi_cfg.py >& capture.log
-   cmsRun CTP7DQM_cfg.py >& dqm.log
+#   cmsRun CTP7ToDigi_cfg.py >& capture.log
+#   cmsRun CTP7DQM_cfg.py >& dqm.log
+
+   cmsRun CTP7ToDigiAndDQMPATTERN_cfg.py >& capture.log
 
    cp CTP7DQM.root CTP7DQMMERGE.root 
    # Plot
@@ -45,22 +47,22 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
    mkdir -p "$foldername" 
    mv *png  "$foldername"
    cp templates/*Details.html "$foldername"
-   mv *txt *log "$foldername"
-   mv CTP7ToDigi.root "$foldername" 
+   cp *txt *log "$foldername"
+   #mv CTP7ToDigi.root "$foldername" 
    (cat templates/index_a ; echo $foldername;  cat templates/index_b) > index.html
    mv index.html "$foldername"
      	
    mv CTP7DQM.root  "$foldername"
    rm *.root
         
-   cp  "$foldername"/*png "$foldername"/index.html /afs/cern.ch/user/r/rctcmstr/www/
+   cp  "$foldername"/* "$foldername"/index.html /afs/cern.ch/user/r/rctcmstr/www
 
    mv "$foldername" ../archive/
 
    if [ "$COUNTER" != "$N_ITERATIONS" ]; then
        if [ "$WAIT_TIME" == "" ]; then
 	   echo "Waiting 1 minute..."
-	   sleep 1m
+	   sleep 0m
        else
 	   echo "Waiting "$WAIT_TIME" minutes..."
 	   sleep "$WAIT_TIME"m
@@ -68,5 +70,6 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
    fi
 
    let COUNTER+=1
+
 done
     

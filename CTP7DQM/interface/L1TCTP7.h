@@ -79,6 +79,8 @@ private:
   //PUM plot
   MonitorElement* ctp7RegionsNonZero_;
   MonitorElement* ctp7RegionsNonZeroVsEvt_;
+  MonitorElement* ctp7RegionsNonZeroHFVsEvt_;
+  MonitorElement* ctp7RegionsNonZeroBarrelVsEvt_;
   MonitorElement* ctp7RegionsNormNonZero_;
   MonitorElement* ctp7RegionsNormNonZeroVsEvt_;
   MonitorElement* ctp7RegionsAvgEtVsEvt_;

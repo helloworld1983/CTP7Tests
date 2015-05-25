@@ -16,6 +16,8 @@ void timingplotter(TString fileName="CTP7DQMMERGE.root"){
 
  doHistoEvt("RctRegionsTotEtVsEvt","Tot Region Rank Vs Event","Tot region rank", true);;
  doHistoEvt("RctRegionsNonZeroVsEvt","Non Zero Regions Vs Event","PUM",true,-1,true);;
+ doHistoEvt("RctRegionsNonZeroBarrelVsEvt","Non Zero Barrel Regions Vs Event","PUM",true,-1,true);;
+ doHistoEvt("RctRegionsNonZeroHFVsEvt","Non Zero HF Regions Vs Event","PUM",true,-1,true);;
  doHistoEvt("RctRegionsAvgEtVsEvt","Average Region Rank Vs Event","Average region rank", true,-1,true);;
  doHistoEvt("RctRegionsAvgEtVsEta","Average Region Rank Vs gctEta","Average region rank", false);;
  doHistoEvt("RctRegionsMaxEtVsEvt","Max Region Rank Vs Event","Max region rank", true,-1,true);;

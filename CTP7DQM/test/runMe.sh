@@ -5,14 +5,14 @@ RUN=`grep -o "RunSummary?RUN=......" RunSummary.html -m1  |  sed -r 's/^.{15}//'
 echo Starting on run... $RUN
 
 COUNTER=1
-until [  $COUNTER -gt 2 ]; do
+until [  $COUNTER -gt 50 ]; do
     echo COUNTER $COUNTER
 
     # Which is the run?
     RUN=`grep -o "RunSummary?RUN=......" RunSummary.html -m1  |  sed -r 's/^.{15}//'`
 
     # Run CMSSW Programs
-    cmsRun CTP7ToDigiAndDQM_cfg.py >& capture.log
+    cmsRun CTP7ToDigiAndDQM_cfg.py maxEvents=1000 >& capture.log
 
     # Check Run has not changed
     RUN2=`grep -o "RunSummary?RUN=......" RunSummary.html -m1  |  sed -r 's/^.{15}//'`
@@ -25,8 +25,6 @@ until [  $COUNTER -gt 2 ]; do
 		sleep 3m
     else 
 		echo Now plotting! $RUN 
-		
-		#hadd -f CTP7DQMMERGE.root run.root CTP7DQM.root
 		cp CTP7DQM.root CTP7DQMMERGE.root # i got an error again, why?
 		# Plot
 		root -b -q fastplotter.C >& plots.txt 
@@ -35,14 +33,12 @@ until [  $COUNTER -gt 2 ]; do
 		#mv CTP7DQMMERGE.root run.root
 
                 # Format for web
-                foldername="CosmicsMonitoring_"$RUN"_"$COUNTER$(date +_%Y%m%d_%H%M%S)
+                foldername="900GeV_"$RUN"_"$COUNTER$(date +_%Y%m%d_%H%M%S)
                 echo Creating $foldername
-
                 mkdir -p "$foldername" 
                 mv *png  "$foldername"
                 cp templates/*Details.html "$foldername"
                 mv *txt *log "$foldername"
-                mv CTP7ToDigi.root "$foldername" 
 		(cat templates/index_a ; echo RUN NUMBER: $RUN ;  cat templates/index_b) > index.html
 		mv index.html "$foldername"
              	
