@@ -85,6 +85,13 @@ private:
   MonitorElement* ctp7RegionsNormNonZeroVsEvt_;
   MonitorElement* ctp7RegionsAvgEtVsEvt_;
   MonitorElement* ctp7RegionsMaxEtVsEvt_;
+  MonitorElement* ctp7RegionsMaxEtHFVsEvt_;
+  MonitorElement* ctp7RegionsMaxEtBarrelVsEvt_;
+  MonitorElement* ctp7RegionsHFPhiOccETVsEvt_;
+  MonitorElement* ctp7RegionsHFPhiPlusOccETVsEvt_;
+  MonitorElement* ctp7RegionsHFPhiMinusOccETVsEvt_;
+
+
   MonitorElement* ctp7RegionsTotEtVsEvt_;
   MonitorElement* ctp7RegionsTotalRegionEt_;
   MonitorElement* ctp7EmAvgEtVsEvt_;

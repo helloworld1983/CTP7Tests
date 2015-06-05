@@ -21,7 +21,7 @@ process.MessageLogger = cms.Service("MessageLogger",
     )
 )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(3500) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(3563) )
 #process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(102) )
 
 process.source = cms.Source("EmptySource")

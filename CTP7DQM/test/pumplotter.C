@@ -11,22 +11,6 @@ void pumplotter(TString fileName="CTP7DQMMERGE.root"){
  file0 = new TFile(fileName,"READONLY");
  myfile.open ("pum.log");
 
- doHisto("RctRegionsEtMapVsEvt","Regions vs Event (ET)",false,true,true);;
- doHisto("RctRegionsOccVsEvt","Non Zero Regions vs Event",false,true,true);;
-
- doHistoEvt("RctRegionsTotEtVsEvt","Tot Region Rank Vs Event","Tot region rank", true);;
- doHistoEvt("RctRegionsNonZeroVsEvt","Non Zero Regions /22 Vs Event","PUM",true);;
- doHistoEvt("RctRegionsAvgEtVsEvt","Average Region Rank Vs Event","Average region rank", true);;
- doHistoEvt("RctRegionsAvgEtVsEta","Average Region Rank Vs gctEta","Average region rank", false);;
- doHistoEvt("RctRegionsMaxEtVsEvt","Max Region Rank Vs Event","Max region rank", true);;
- doHisto("RctRegionsAverageRegionEt","Average Region Rank",false,false);;
- doHisto("RctRegionsTotalRegionEt","Total Region Rank",false,false);;
- doHistoEvt("RctRegionsMaxEtVsEvt","Max Region Rank Vs Event","Max region rank", true,170);;
- doHistoEvt("RctRegionsAvgEtVsEvt","Average Region Rank Vs Event","Average region rank", true,170);;
- doHistoEvt("RctRegionsTotEtVsEvt","Tot Region Rank Vs Event","Tot region rank", true,170);;
- doHisto("RctRegionsNormNonZero","Non Zero Regions",false,false,false);;
- doHistoEvt("RctRegionsNormNonZeroVsEvt","Non Zero Regions / 22 Vs Event","PUM",true);;
- doHisto("RctRegionsNonZero","Non Zero Regions",false,false,false);;
  doHisto("RctRegionsPumEta0","E_{T} per PUM bin in gcteta=0",false,false,true);;
  doHisto("RctRegionsPumEta1","E_{T} per PUM bin in gcteta=1",false,false,true);;
  doHisto("RctRegionsPumEta2","E_{T} per PUM bin in gcteta=2",false,false,true);;

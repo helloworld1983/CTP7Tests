@@ -138,8 +138,28 @@ void L1TCTP7::beginRun(edm::Run const& iRun, edm::EventSetup const& iSetup)
         dbe->book2D("RctRegionsEtMapVsEvt", " EtMap per region ID vs EVT", EVBINS, EVMIN,
                     EVMAX, NUMREGIONS,-0.5,NUMREGIONS-0.5);
 
+    ctp7RegionsHFPhiOccETVsEvt_ =
+        dbe->book2D("RctRegionsHFPhiOccETVsEvt", "Phi of the HF clusters, energy in Z axis, vs EVT", EVBINS, EVMIN,
+                    EVMAX, PHIBINS, PHIMIN, PHIMAX);
+
+    ctp7RegionsHFPhiPlusOccETVsEvt_ =
+        dbe->book2D("RctRegionsHFPhiPlusOccETVsEvt", "Phi of the HF clusters, energy in Z axis, vs EVT", EVBINS, EVMIN,
+                    EVMAX, PHIBINS, PHIMIN, PHIMAX);
+
+    ctp7RegionsHFPhiMinusOccETVsEvt_ =
+        dbe->book2D("RctRegionsHFPhiMinusOccETVsEvt", "Phi of the HF clusters, energy in Z axis, vs EVT", EVBINS, EVMIN,
+                    EVMAX, PHIBINS, PHIMIN, PHIMAX);
+
     ctp7RegionsMaxEtVsEvt_ =
         dbe->book2D("RctRegionsMaxEtVsEvt", " MAX REGION RANK vs EVT", EVBINS, EVMIN,
+                    EVMAX, R10BINS, R10MIN, R10MAX);
+
+    ctp7RegionsMaxEtHFVsEvt_ =
+        dbe->book2D("RctRegionsMaxEtHFVsEvt", " MAX REGION RANK HF vs EVT", EVBINS, EVMIN,
+                    EVMAX, R10BINS, R10MIN, R10MAX);
+
+    ctp7RegionsMaxEtBarrelVsEvt_ =
+        dbe->book2D("RctRegionsMaxEtBarrelVsEvt", " MAX REGION RANK gctETA=10||11 vs EVT", EVBINS, EVMIN,
                     EVMAX, R10BINS, R10MIN, R10MAX);
 
     ctp7EmTotEtVsEvt_ =
@@ -342,7 +362,6 @@ void L1TCTP7::endJob(void)
 
 void L1TCTP7::analyze(const Event & e, const EventSetup & c)
 {
-  nev_++;
   if (verbose_) {
     std::cout << "L1TCTP7: analyze...." << std::endl;
   }
@@ -403,6 +422,8 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
     double nonzeroregions_hf = 0; // this is divided later
     double totalregionet = 0;
     unsigned int maxregionet = 0;
+    unsigned int maxregionet_hf = 0;
+    unsigned int maxregionet_barrel = 0;
 
     int regionbin=0;
 
@@ -419,10 +440,18 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
       nonzeroregions++;
       totalregionet += ireg->et();
       if(ireg->gctEta()==10||ireg->gctEta()==11){
-        nonzeroregions_barrel++;        
+        nonzeroregions_barrel++;   
+	if(ireg->et()>maxregionet_barrel) maxregionet_barrel=ireg->et();     
       }
       if(ireg->gctEta()<4||ireg->gctEta()>17){
         nonzeroregions_hf++;
+        if(ireg->et()>maxregionet_hf) maxregionet_hf=ireg->et();
+        ctp7RegionsHFPhiOccETVsEvt_->Fill(nev_,ireg->gctPhi(),ireg->et());
+
+        if(ireg->gctEta()<4) ctp7RegionsHFPhiMinusOccETVsEvt_->Fill(nev_,ireg->gctPhi(),ireg->et());
+
+        if(ireg->gctEta()>17) ctp7RegionsHFPhiPlusOccETVsEvt_->Fill(nev_,ireg->gctPhi(),ireg->et());
+
       }
 
       if(ireg->et()>maxregionet) maxregionet=ireg->et();        
@@ -449,6 +478,9 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
     ctp7RegionsAverageRegionEt_->Fill(totalregionet*1.0/NUMREGIONS);
     ctp7RegionsAvgEtVsEvt_->Fill(nev_,totalregionet*1.0/NUMREGIONS);
     ctp7RegionsMaxEtVsEvt_->Fill(nev_,maxregionet);
+    ctp7RegionsMaxEtHFVsEvt_->Fill(nev_,maxregionet_hf);
+    ctp7RegionsMaxEtBarrelVsEvt_->Fill(nev_,maxregionet_barrel);
+
     ctp7RegionsTotEtVsEvt_->Fill(nev_,totalregionet);
     ctp7RegionsTotalRegionEt_->Fill(totalregionet);
 
@@ -570,5 +602,6 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
     ctp7EmNonZeroVsEvt_->Fill(nev_,nonzeroem);
 
 
+  nev_++;
 
 }

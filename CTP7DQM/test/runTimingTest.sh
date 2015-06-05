@@ -2,7 +2,7 @@
 
 while [ "$1" != "" ]; do
     case $1 in
-	-h | --help )               echo "runPattern.sh usage: ./runPattern.sh [-h] [n_iterations] [--wait n_minutes]"
+	-h | --help )               echo "runTimingTest.sh usage: ./runTimingTest.sh [-h] [n_iterations] [--wait n_minutes]"
                                     exit 1
                                     ;;
 	--wait )                    shift
@@ -22,7 +22,7 @@ if [ "$N_ITERATIONS" -gt 1 ]; then
     MAYBE_AN_S="s"
 fi
 
-echo "Checking Patterns "$N_ITERATIONS" time"$MAYBE_AN_S"..."
+echo "Checking TimingTests "$N_ITERATIONS" time"$MAYBE_AN_S"..."
 
 COUNTER=1
 until [  $COUNTER -gt "$N_ITERATIONS" ]; do
@@ -42,7 +42,7 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
    root -b -q linkplotter.C >& linkplots.txt  
 
    # Format for web
-   foldername="TIMING_"$COUNTER$(date +_%Y%m%d_%H%M%S)
+   foldername="UNSTABLECOLLISIONS_TIMING_"$COUNTER$(date +_%Y%m%d_%H%M%S)
 	   echo Creating $foldername
 
    mkdir -p "$foldername" 
@@ -65,7 +65,7 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
 
    if [ "$COUNTER" != "$N_ITERATIONS" ]; then
        if [ "$WAIT_TIME" == "" ]; then
-	   echo "Waiting 1 minute..."
+	   echo "Waiting 0 minute..."
 	   sleep 0m
        else
 	   echo "Waiting "$WAIT_TIME" minutes..."
