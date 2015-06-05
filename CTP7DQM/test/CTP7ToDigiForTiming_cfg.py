@@ -21,12 +21,8 @@ process.MessageLogger = cms.Service("MessageLogger",
     )
 )
 
-if options.maxEvents:
-    nEvents = options.maxEvents
-else:
-    nEvents = 10000
-
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(nEvents) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(3563) )
+#process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(102) )
 
 process.source = cms.Source("EmptySource")
 
@@ -34,10 +30,11 @@ process.source = cms.Source("EmptySource")
 process.ctp7ToDigi = cms.EDProducer('CTP7ToDigi',
                                     ctp7Host = cms.untracked.string("127.0.0.1"),  #LOCALHOST
                                     #ctp7Host = cms.untracked.string("144.92.181.245"),
-                                    ctp7Port = cms.untracked.string("5554"),
+                                    ctp7Port = cms.untracked.string("5554"),  # 5554 for raven3
                                     test = cms.untracked.bool(False),
-                                    NEventsPerCapture = cms.untracked.int32(170),
-                                    createLinkFile = cms.untracked.bool(True))
+                                    NEventsPerCapture = cms.untracked.int32(169),
+                                    createLinkFile = cms.untracked.bool(True),
+                                    doTimingScan = cms.untracked.bool(True))
 
 filter_step = process.filterLinks
 

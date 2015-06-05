@@ -79,10 +79,31 @@ private:
   //PUM plot
   MonitorElement* ctp7RegionsNonZero_;
   MonitorElement* ctp7RegionsNonZeroVsEvt_;
+  MonitorElement* ctp7RegionsNonZeroHFVsEvt_;
+  MonitorElement* ctp7RegionsNonZeroBarrelVsEvt_;
+  MonitorElement* ctp7RegionsNormNonZero_;
+  MonitorElement* ctp7RegionsNormNonZeroVsEvt_;
   MonitorElement* ctp7RegionsAvgEtVsEvt_;
   MonitorElement* ctp7RegionsMaxEtVsEvt_;
+  MonitorElement* ctp7RegionsMaxEtHFVsEvt_;
+  MonitorElement* ctp7RegionsMaxEtBarrelVsEvt_;
+  MonitorElement* ctp7RegionsHFPhiOccETVsEvt_;
+  MonitorElement* ctp7RegionsHFPhiPlusOccETVsEvt_;
+  MonitorElement* ctp7RegionsHFPhiMinusOccETVsEvt_;
+
+
+  MonitorElement* ctp7RegionsTotEtVsEvt_;
+  MonitorElement* ctp7RegionsTotalRegionEt_;
+  MonitorElement* ctp7EmAvgEtVsEvt_;
+  MonitorElement* ctp7EmMaxEtVsEvt_;
+  MonitorElement* ctp7EmTotEtVsEvt_;
+  MonitorElement* ctp7EmNonZeroVsEvt_;
+  MonitorElement* ctp7EmAvgEtVsEta_;
   MonitorElement* ctp7RegionsAverageRegionEt_;
   MonitorElement* ctp7RegionsAvgEtVsEta_;
+  MonitorElement* ctp7RegionsEtMapVsEvt_;
+  MonitorElement* ctp7RegionsOccVsEvt_;
+
   MonitorElement* ctp7RegionsPumEta0_;
   MonitorElement* ctp7RegionsPumEta1_;
   MonitorElement* ctp7RegionsPumEta2_;

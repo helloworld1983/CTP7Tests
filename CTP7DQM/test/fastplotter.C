@@ -26,6 +26,7 @@ void fastplotter(TString fileName="CTP7DQMMERGE.root"){
  doHisto("RctBitOverFlowEtaPhi", "Overflow bit");
  doHisto("RctBitQuietEtaPhi", "Quiet bit");
  doHisto("RctBitTauVetoEtaPhi", "TauVeto bit");
+
 }
 
 //doPUM option used in pumplotter.cc
