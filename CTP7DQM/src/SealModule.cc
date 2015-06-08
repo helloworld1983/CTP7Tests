@@ -8,3 +8,5 @@ DEFINE_FWK_MODULE(L1TCTP7);
 #include <CTP7Tests/CTP7DQM/interface/LinkDQM.h>
 DEFINE_FWK_MODULE(LinkDQM);
 
+#include <CTP7Tests/CTP7DQM/interface/RCTL1A.h>
+DEFINE_FWK_MODULE(RCTL1A);
