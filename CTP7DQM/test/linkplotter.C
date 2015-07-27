@@ -23,6 +23,7 @@ void linkplotter(TString fileName="CTP7DQMMERGE.root"){
 //
  file0 = new TFile(fileName,"READONLY");
  
+ doHisto("RctRunMonitor","CTP7 Run Number","CTP7 Run Number", false);;
  doHisto("RctLinkMonitor","CTP7 Link Status","CTP7 Link Status", false);;
  doHisto("RctLinkMonitorVsTime","CTP7 Link Health vs Time","CERN Time hhmmss",true, false);;
  doHisto("RctLinkMonitorNot15","CTP7 Link Status Error","CTP7 Link Error Status ", false);;

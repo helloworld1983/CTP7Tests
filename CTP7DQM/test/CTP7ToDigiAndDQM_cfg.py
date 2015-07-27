@@ -1,9 +1,16 @@
 import FWCore.ParameterSet.Config as cms
 from FWCore.ParameterSet.VarParsing import VarParsing
-
 options = VarParsing('analysis')
-
+options.register(
+    'SetCaptureStart',
+    -1,
+    VarParsing.multiplicity.singleton,
+    VarParsing.varType.int,
+    "Start Capture at this BX")
 options.parseArguments()
+
+print "Starting Capture at BX: %i" %(options.SetCaptureStart)
+
 
 process = cms.Process("myDQM")
 process.load("DQMServices.Core.DQM_cfg")
@@ -36,8 +43,10 @@ process.ctp7ToDigi = cms.EDProducer('CTP7ToDigi',
                                     #ctp7Host = cms.untracked.string("144.92.181.245"),
                                     ctp7Port = cms.untracked.string("5554"),
                                     test = cms.untracked.bool(False),
-                                    NEventsPerCapture = cms.untracked.int32(170),
-                                    createLinkFile = cms.untracked.bool(True))
+                                    NEventsPerCapture = cms.untracked.int32(169),
+                                    createLinkFile = cms.untracked.bool(True),
+				    doFixedCaptureStart=cms.untracked.int32(options.SetCaptureStart)
+)
 
 filter_step = process.filterLinks
 

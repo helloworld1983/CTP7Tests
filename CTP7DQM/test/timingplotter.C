@@ -11,34 +11,36 @@ void timingplotter(TString fileName="CTP7DQMMERGE.root"){
  file0 = new TFile(fileName,"READONLY");
  myfile.open ("timing.log");
 
+ int firstBX=1000, lastBX=1170; 
+
  doHistoREGION("RctRegionsEtMapVsEvt","Regions vs BX (ET)",-1);;
  doHistoREGION("RctRegionsOccVsEvt","Non Zero Regions vs BX",-1);;
  doHisto("RctRegionsHFPhiOccETVsEvt","HF Phi regions vs BX",false,true,false);;
- doHisto("RctRegionsHFPhiOccETVsEvt","HF Phi regions vs BX",false,true,false,0,40);;
- doHisto("RctRegionsHFPhiPlusOccETVsEvt","HF Phi regions vs BX",false,true,false,0,40);;
- doHisto("RctRegionsHFPhiMinusOccETVsEvt","HF Phi regions vs BX",false,true,false,0,40);;
+ doHisto("RctRegionsHFPhiOccETVsEvt","HF Phi regions vs BX",false,true,false,firstBX,lastBX);;
+ doHisto("RctRegionsHFPhiPlusOccETVsEvt","HF Phi regions vs BX",false,true,false,firstBX,lastBX);;
+ doHisto("RctRegionsHFPhiMinusOccETVsEvt","HF Phi regions vs BX",false,true,false,firstBX,lastBX);;
 
  doHistoEvt("RctRegionsTotEtVsEvt","Tot Region Rank Vs BX","Tot region rank", true);;
  doHistoEvt("RctRegionsNonZeroVsEvt","Non Zero Regions Vs BX","PUM",true,-1,-1,true);;
- doHistoEvt("RctRegionsNonZeroVsEvt","ZOOMED - Non Zero Regions Vs BX","PUM",true,0,40,true);;
+ doHistoEvt("RctRegionsNonZeroVsEvt","ZOOMED - Non Zero Regions Vs BX","PUM",true,firstBX,lastBX,true);;
 
- doHistoEvt("RctRegionsNonZeroBarrelVsEvt","Non Zero Barrel Regions Vs BX","PUM",true,0,40,true);;
+ doHistoEvt("RctRegionsNonZeroBarrelVsEvt","Non Zero Barrel Regions Vs BX","PUM",true,firstBX,lastBX,true);;
  doHistoEvt("RctRegionsNonZeroHFVsEvt","Non Zero HF Regions Vs BX","PUM",true,-1,-1,true);;
- doHistoEvt("RctRegionsNonZeroBarrelVsEvt","ZOOMED - Non Zero Barrel Regions Vs BX","PUM",true,0,40,true);;
- doHistoEvt("RctRegionsNonZeroHFVsEvt","ZOOMED - Non Zero HF Regions Vs BX","PUM",true,0,40,true);;
+ doHistoEvt("RctRegionsNonZeroBarrelVsEvt","ZOOMED - Non Zero Barrel Regions Vs BX","PUM",true,firstBX,lastBX,true);;
+ doHistoEvt("RctRegionsNonZeroHFVsEvt","ZOOMED - Non Zero HF Regions Vs BX","PUM",true,firstBX,lastBX,true);;
  doHistoEvt("RctRegionsAvgEtVsEvt","Average Region Rank Vs BX","Average region rank", true,-1,-1,true);;
  doHistoEvt("RctRegionsAvgEtVsEta","Average Region Rank Vs gctEta","Average region rank", false);;
  doHistoEvt("RctRegionsMaxEtVsEvt","Max Region Rank Vs BX","Max region rank", true,-1,-1,true);;
  doHistoEvt("RctRegionsMaxEtHFVsEvt","Max Region Rank in the HF Vs BX","Max region rank", true,-1,-1);;
  doHistoEvt("RctRegionsMaxEtBarrelVsEvt","Max Region Rank Barrel (gctEta=10,11) Vs BX","Max region rank", true,-1,-1);;
- doHistoEvt("RctRegionsMaxEtHFVsEvt","ZOOMED - Max Region Rank in the HF Vs BX","Max region rank", true,0,40);;
- doHistoEvt("RctRegionsMaxEtBarrelVsEvt","ZOOMED - Max Region Rank Barrel (gctEta=10,11) Vs BX","Max region rank", true,0,40);;
+ doHistoEvt("RctRegionsMaxEtHFVsEvt","ZOOMED - Max Region Rank in the HF Vs BX","Max region rank", true,firstBX,lastBX);;
+ doHistoEvt("RctRegionsMaxEtBarrelVsEvt","ZOOMED - Max Region Rank Barrel (gctEta=10,11) Vs BX","Max region rank", true,firstBX,lastBX);;
 
- doHisto("RctRegionsAverageRegionEt","Average Region Rank",false,false);;
- doHisto("RctRegionsTotalRegionEt","Total Region Rank",false,false);;
- doHistoEvt("RctRegionsMaxEtVsEvt","ZOOMED - Max Region Rank Vs BX","Max region rank", true,0,40);;
- doHistoEvt("RctRegionsAvgEtVsEvt","ZOOMED - Average Region Rank Vs BX","Average region rank", true,0,40);;
- doHistoEvt("RctRegionsTotEtVsEvt","ZOOMED - Tot Region Rank Vs BX","Tot region rank", true,0,40);;
+ doHisto("RctRegionsAverageRegionEt","Average Region Rank",false,false,false,0,100);;
+ doHisto("RctRegionsTotalRegionEt","Total Region Rank",false,false,false,0,100);;
+ doHistoEvt("RctRegionsMaxEtVsEvt","ZOOMED - Max Region Rank Vs BX","Max region rank", true,firstBX,lastBX);;
+ doHistoEvt("RctRegionsAvgEtVsEvt","ZOOMED - Average Region Rank Vs BX","Average region rank", true,firstBX,lastBX);;
+ doHistoEvt("RctRegionsTotEtVsEvt","ZOOMED - Tot Region Rank Vs BX","Tot region rank", true,firstBX,lastBX);;
  doHisto("RctRegionsNormNonZero","Non Zero Regions",false,false,false);;
  doHistoEvt("RctRegionsNormNonZeroVsEvt","Non Zero Regions / 22 Vs BX","PUM",true);;
  doHisto("RctRegionsNonZero","Non Zero Regions",false,false,false);;
@@ -48,11 +50,11 @@ void timingplotter(TString fileName="CTP7DQMMERGE.root"){
  doHistoEvt("RctEmIsoNonZeroVsEvt","Non Zero EM Vs BX","Num non-zero",true);;
  doHistoEvt("RctEmIsoAvgEtVsEta","Average EM Rank Vs gctEta","Average em rank", false);;
  doHistoEvt("RctEmIsoTotEtVsEvt","Tot EM Rank Vs BX","Tot Em rank", true);;
- doHistoEvt("RctEmIsoTotEtVsEvt","ZOOMED - Tot Em Rank Vs BX","Tot Em rank", true,0,40);;
+ doHistoEvt("RctEmIsoTotEtVsEvt","ZOOMED - Tot Em Rank Vs BX","Tot Em rank", true,firstBX,lastBX);;
  doHistoEvt("RctEmIsoMaxEtVsEvt","Max Em Rank Vs BX","Max Em rank", true);;
- doHistoEvt("RctEmIsoMaxEtVsEvt","ZOOMED - Max Em Rank Vs BX","Max Em rank", true,0,40);;
+ doHistoEvt("RctEmIsoMaxEtVsEvt","ZOOMED - Max Em Rank Vs BX","Max Em rank", true,firstBX,lastBX);;
  doHistoEvt("RctEmIsoAvgEtVsEvt","Average Em Rank Vs BX","Average em rank", true);;
- doHistoEvt("RctEmIsoAvgEtVsEvt","ZOOMED - Average Em Rank Vs BX","Average em rank", true,0,40);;
+ doHistoEvt("RctEmIsoAvgEtVsEvt","ZOOMED - Average Em Rank Vs BX","Average em rank", true,firstBX,lastBX);;
  doHisto("RctEmBx","RCT Em Bunch Crossing",false, false);;
  myfile.close();
 }
@@ -101,7 +103,7 @@ void doHisto(TString name="RctBitHfPlusTauEtaPhi", TString label="Test", bool do
           histo->SetYTitle("Counts");
           histo->SetLineWidth(2);
           histo->SetTitle(label);
-          if(zoom!=-1) {histo->GetXaxis()->SetUserRange(zoom,zoomEnd); histo->SetName(name+"_zoom");}
+          if(zoom!=-1) {histo->GetXaxis()->SetRangeUser(zoom,zoomEnd); histo->SetName(name+"_zoom");}
               
 
  }

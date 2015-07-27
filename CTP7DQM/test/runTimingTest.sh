@@ -42,7 +42,7 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
    root -b -q linkplotter.C >& linkplots.txt  
 
    # Format for web
-   foldername="UNSTABLECOLLISIONS_TIMING_"$COUNTER$(date +_%Y%m%d_%H%M%S)
+   foldername="2Bunches_COLLISIONS_TIMING_"$COUNTER$(date +_%Y%m%d_%H%M%S)
 	   echo Creating $foldername
 
    mkdir -p "$foldername" 
@@ -60,6 +60,7 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
    #rm *.root
         
    cp  "$foldername"/*  /afs/cern.ch/user/r/rctcmstr/www/TIMING
+   cp -r "$foldername" /afs/cern.ch/user/r/rctcmstr/www/TIMING 
 
    mv "$foldername" ../archive/
 

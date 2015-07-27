@@ -38,9 +38,11 @@ const unsigned int EVBINS = 4000;
 const float EVMIN = -0.5;
 const float EVMAX = 3999.5;
 
-const unsigned int PUMBINS = 22;
+const unsigned int PUMNORMALIZE = 22;
+
+const unsigned int PUMBINS = 18;
 const float PUMMIN = -0.5;
-const float PUMMAX = 21.5;
+const float PUMMAX = 17.5;
 
 L1TCTP7::L1TCTP7(const ParameterSet & ps) :
    ctp7Source_L1CRCollection_( consumes<L1CaloRegionCollection>(ps.getParameter< InputTag >("ctp7Source") )),
@@ -167,7 +169,7 @@ void L1TCTP7::beginRun(edm::Run const& iRun, edm::EventSetup const& iSetup)
                     EVMAX, R10BINS*2,R10MIN,R10MAX*2);
 
     ctp7RegionsTotalRegionEt_ =
-        dbe->book1D("RctRegionsTotalRegionEt", "AVERAGE REGION RANK", 100,0,100000);
+        dbe->book1D("RctRegionsTotalRegionEt", "AVERAGE REGION RANK", 1000,0,1000);
 
     ctp7EmAvgEtVsEvt_ =
 		dbe->book2D("RctEmIsoAvgEtVsEvt", " AVERAGE REGION RANK vs EVT", EVBINS, EVMIN,
@@ -177,6 +179,9 @@ void L1TCTP7::beginRun(edm::Run const& iRun, edm::EventSetup const& iSetup)
         dbe->book2D("RctEmIsoMaxEtVsEvt", " MAX REGION RANK vs EVT", EVBINS, EVMIN,
                     EVMAX, R10BINS, R10MIN, R10MAX);
 
+//    ctp7EmMaxEtVsEvt_ =
+ //       dbe->book2D("RctEmIsoMaxEtVsEvt", " MAX REGION RANK vs EVT", EVBINS, EVMIN,
+ //                   EVMAX, R10BINS, R10MIN, R10MAX);
     ctp7RegionsAverageRegionEt_ =
 	dbe->book1D("RctRegionsAverageRegionEt", "AVERAGE REGION RANK", R10BINS, R10MIN, R10MAX);
 
@@ -484,8 +489,8 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
     ctp7RegionsTotEtVsEvt_->Fill(nev_,totalregionet);
     ctp7RegionsTotalRegionEt_->Fill(totalregionet);
 
-    ctp7RegionsNormNonZero_->Fill(nonzeroregions*1.0/PUMBINS);
-    ctp7RegionsNormNonZeroVsEvt_->Fill(nev_,(nonzeroregions*1.0)/(1.0*PUMBINS));
+    ctp7RegionsNormNonZero_->Fill(nonzeroregions*1.0/PUMNORMALIZE);
+    ctp7RegionsNormNonZeroVsEvt_->Fill(nev_,(nonzeroregions*1.0)/(1.0*PUMNORMALIZE));
 
     ctp7RegionsNonZero_->Fill(nonzeroregions);
     ctp7RegionsNonZeroVsEvt_->Fill(nev_,nonzeroregions);
@@ -498,49 +503,49 @@ void L1TCTP7::analyze(const Event & e, const EventSetup & c)
          ireg != rgn->end(); ireg++) {
           ctp7RegionsAvgEtVsEta_->Fill(ireg->gctEta(),ireg->et());
       if (ireg->gctEta()==0){
-          ctp7RegionsPumEta0_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta0_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==1) {
-          ctp7RegionsPumEta1_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta1_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==2){ 
-          ctp7RegionsPumEta2_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta2_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==3){ 
-          ctp7RegionsPumEta3_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta3_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==4){ 
-          ctp7RegionsPumEta4_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta4_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==5){ 
-          ctp7RegionsPumEta5_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta5_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==6){ 
-          ctp7RegionsPumEta6_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta6_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==7){ 
-          ctp7RegionsPumEta7_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta7_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==8){ 
-          ctp7RegionsPumEta8_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta8_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==9){ 
-          ctp7RegionsPumEta9_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta9_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==10){ 
-          ctp7RegionsPumEta10_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta10_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==11){ 
-          ctp7RegionsPumEta11_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta11_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==12){ 
-          ctp7RegionsPumEta12_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta12_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==13){ 
-          ctp7RegionsPumEta13_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta13_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==14){ 
-          ctp7RegionsPumEta14_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta14_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==15){ 
-          ctp7RegionsPumEta15_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta15_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==16){ 
-          ctp7RegionsPumEta16_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta16_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==17){ 
-          ctp7RegionsPumEta17_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta17_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==18){ 
-          ctp7RegionsPumEta18_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta18_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==19){ 
-          ctp7RegionsPumEta19_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta19_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==20){ 
-          ctp7RegionsPumEta20_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta20_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
       else if (ireg->gctEta()==21){
-          ctp7RegionsPumEta21_->Fill(nonzeroregions/PUMBINS,ireg->et());}
+          ctp7RegionsPumEta21_->Fill(nonzeroregions/PUMNORMALIZE,ireg->et());}
     }
 
   }//end doHd

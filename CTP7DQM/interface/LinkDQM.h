@@ -61,6 +61,8 @@ private:
   // ----------member data ---------------------------
   DQMStore * dbe;
 
+  //CTP7 Run information
+  MonitorElement* ctp7RunMonitor_;
   //CTP7 Link information
   MonitorElement* ctp7LinkMonitor_;
   MonitorElement* ctp7LinkMonitorNot15_;

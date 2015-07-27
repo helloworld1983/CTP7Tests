@@ -43,7 +43,7 @@ if [ "$N_ITERATIONS" -gt 1 ]; then
 fi
 
 if [ "$PATTERN" != 1 ]; then
-    RUN=`grep -o "RunSummary?RUN=......" templates/RunSummary.html -m1  |  sed -r 's/^.{15}//'`
+    RUN=`grep -o "RunSummary?RUN=......" RunSummary.html -m1  |  sed -r 's/^.{15}//'`
     RUN_ADDENDUM="starting with run "$RUN""
 fi
 
@@ -60,7 +60,7 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
 
     if [ "$PATTERN" != 1 ]; then
 	# Which is the run?
-	RUN=`grep -o "RunSummary?RUN=......" templates/RunSummary.html -m1  |  sed -r 's/^.{15}//'`
+	RUN=`grep -o "RunSummary?RUN=......" RunSummary.html -m1  |  sed -r 's/^.{15}//'`
     fi
 
     # Run CMSSW Programs
@@ -70,7 +70,7 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
     PLOT_NOW=1
     if [ "$PATTERN" != 1 ]; then
         # Check Run has not changed
-	RUN2=`grep -o "RunSummary?RUN=......" templates/RunSummary.html -m1  |  sed -r 's/^.{15}//'`
+	RUN2=`grep -o "RunSummary?RUN=......" RunSummary.html -m1  |  sed -r 's/^.{15}//'`
 	if [ $RUN != $RUN2 ]; then
             echo New Run is $RUN2
             PLOT_NOW=0
@@ -87,12 +87,13 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
         # Plot
         root -b -q fastplotter.C >& plots.txt 
         root -b -q pumplotter.C >& pumplots.txt  
+        root -b -q eventplotter.C >& eventplots.txt
         root -b -q linkplotter.C >& linkplots.txt  
         #mv CTP7DQMMERGE.root run.root
 	
         # Format for web
 	if [ "$PATTERN" != 1 ]; then
-            foldername="CosmicsMonitoring_"$RUN"_"$COUNTER$(date +_%Y%m%d_%H%M%S)
+            foldername="MAGNET_ON_"$RUN"_"$COUNTER$(date +_%Y%m%d_%H%M%S)
 	else
 	    foldername="PatternTest_"$COUNTER"_"$(date +_%Y%m%d_%H%M%S)
 	fi
@@ -102,8 +103,8 @@ until [  $COUNTER -gt "$N_ITERATIONS" ]; do
         mkdir -p "$foldername" 
         mv *png  "$foldername"
         cp templates/*Details.html "$foldername"
-        mv *txt *log "$foldername"
-   #     mv CTP7ToDigi.root "$foldername" 
+        #mv *txt *log "$foldername"
+        mv CTP7ToDigi.root "$foldername" 
         (cat templates/index_a ; echo RUN NUMBER: $RUN ;  cat templates/index_b) > index.html
         mv index.html "$foldername"
         

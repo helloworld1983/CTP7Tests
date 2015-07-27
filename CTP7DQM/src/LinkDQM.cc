@@ -100,7 +100,10 @@ void LinkDQM::beginRun(edm::Run const& iRun, edm::EventSetup const& iSetup)
 	if (dbe) {
 		dbe->setCurrentFolder("L1T/LinkDQM");
 
-		// global regions
+		ctp7RunMonitor_ = 
+			dbe->book1D("RctRunMonitor", "RUN NUMBER MONITOR",248551, -0.5,248550 );
+
+		//Link Monitoring
 		ctp7LinkMonitor_ = 
 			dbe->book1D("RctLinkMonitor", "LINK MONITOR",NUINT, 0.,NUINT );
 		ctp7LinkMonitorNot15_ = 
@@ -150,9 +153,13 @@ void LinkDQM::analyze(const Event & e, const EventSetup & c)
 
         unsigned int date;
         unsigned int clock;
+        unsigned int run;
         for (TimeMonitorCollection::const_iterator t = time->begin(); t != time->end(); t++){
                 date=t->date();
                 clock=t->minute();
+                run=t->run();
+                std::cout<<"run: "<<run<<std::endl;
+	 	ctp7RunMonitor_->Fill(run);
 	}
 
 	if ( doLm ) {
